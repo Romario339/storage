@@ -1,0 +1,345 @@
+CAN-USB Interface 
+
+CANUSB ASCII Commands V1.1:
+
+Note: All commands to the CANUSB must end with [CR] (Ascii=13) and
+they are CASE sensitive.
+
+Sn[CR] Setup with standard CAN bit-rates where n is 0-8.
+This command is only active if the CAN channel is closed.
+S0 Setup 10Kbit
+S1 Setup 20Kbit
+S2 Setup 50Kbit
+S3 Setup 100Kbit
+S4 Setup 125Kbit
+S5 Setup 250Kbit
+S6 Setup 500Kbit
+S7 Setup 800Kbit
+S8 Setup 1Mbit
+Example: S4[CR]
+Setup CAN to 125Kbit.
+Returns: CR (Ascii 13) for OK or BELL (Ascii 7) for ERROR.
+
+sxxyy[CR] Setup with BTR0/BTR1 CAN bit-rates where xx and yy is a hex
+value. This command is only active if the CAN channel is closed.
+Emulate SJA1000.
+xx BTR0 value in hex
+yy BTR1 value in hex
+Example: s031C[CR]
+Returns: CR (Ascii 13) for OK or BELL (Ascii 7) for ERROR.
+
+
+O[CR] Open the CAN channel.
+This command is only active if the CAN channel is closed and
+has been set up prior with either the S or s command (i.e. initiated).
+Example: O[CR]
+Open the channel
+Returns: CR (Ascii 13) for OK or BELL (Ascii 7) for ERROR.
+
+
+C[CR] Close the CAN channel.
+This command is only active if the CAN channel is open.
+Example: C[CR]
+Close the channel
+Returns: CR (Ascii 13) for OK or BELL (Ascii 7) for ERROR.
+
+
+tiiildd...[CR] Transmit a standard (11bit) CAN frame.
+This command is only active if the CAN channel is open.
+iii Identifier in hex (000-7FF)
+l Data length (0-8)
+dd Byte value in hex (00-FF). Numbers of dd pairs
+must match the data length, otherwise an error
+occur.
+Example 1: t10021133[CR]
+Sends an 11bit CAN frame with ID=0x100, 2 bytes
+with the value 0x11 and 0x33.
+Example 2: t0200[CR]
+Sends an 11bit CAN frame with ID=0x20 & 0 bytes.
+Returns: z[CR] for OK or BELL (Ascii 7) for ERROR.
+
+Tiiiiiiiildd...[CR] Transmit an extended (29bit) CAN frame.
+This command is only active if the CAN channel is open.
+iiiiiiii Identifier in hex (00000000-1FFFFFFF)
+l Data length (0-8)
+dd Byte value in hex (00-FF). Numbers of dd pairs
+must match the data length, otherwise an error
+occur.
+Example 1: t0000010021133[CR]
+Sends a 29bit CAN frame with ID=0x100, 2 bytes
+with the value 0x11 and 0x33.
+Returns: Z[CR] for OK or BELL (Ascii 7) for ERROR.
+
+
+riiil[CR] Transmit an standard RTR (11bit) CAN frame.
+This command is only active if the CANUSB is open in normal mode.
+iii Identifier in hex (000-7FF)
+l Data length (0-8)
+Example 1: r1002[CR]
+Sends an 11bit RTR CAN frame with ID=0x100
+and DLC set to two (2 bytes).
+Returns: z[CR] for OK or BELL (Ascii 7) for ERROR.
+Riiiiiiiil[CR] Transmit an extended RTR (29bit) CAN frame.
+This command is only active if the CANUSB is open in normal mode.
+iiiiiiii Identifier in hex (00000000-1FFFFFFF)
+l Data length (0-8)
+Example 1: t000001002[CR]
+Sends an 11bit RTR CAN frame with ID=0x100
+and DLC set to two (2 bytes).
+Returns: Z[CR] for OK or BELL (Ascii 7) for ERROR.
+
+F[CR] (Unsupported) Read Status Flags.
+This command is only active if the CAN channel is open.
+Example 1: F[CR]
+Read Status Flags.
+Returns: An F with 2 bytes BCD hex value plus CR (Ascii 13)
+for OK. If CAN channel isn't open it returns BELL
+(Ascii 7). This command also clear the RED Error
+LED. See availible errors below. E.g. F01[CR]
+
+
+Mxxxxxxxx[CR] (Unsupported) Sets Acceptance Code Register 
+This command is only active if the CAN channel is initiated and
+not opened.
+xxxxxxxx Acceptance Code in hex with LSB first,
+AC0, AC1, AC2 & AC3.
+For more info, see Philips SJA1000 datasheet.
+Example: M00000000[CR]
+Set Acceptance Code to 0x00000000
+This is default when power on, i.e. receive all frames.
+Returns: CR (Ascii 13) for OK or BELL (Ascii 7) for ERROR.
+
+mxxxxxxxx[CR] (Unsupported) Sets Acceptance Mask Register 
+This command is only active if the CAN channel is initiated and
+not opened.
+xxxxxxxx Acceptance Mask in hex with LSB first,
+AM0, AM1, AM2 & AM3.
+For more info, see Philips SJA1000 datasheet.
+Example: mFFFFFFFF[CR]
+Set Acceptance Mask to 0xFFFFFFFF
+This is default when power on, i.e. receive all frames.
+Returns: CR (Ascii 13) for OK or BELL (Ascii 7) for ERROR.
+Setting Acceptance Code and Mask registers
+The Acceptance Code Register and the Acceptance Mask Register works together and they can
+filter out 2 groups of messages. For more information on how this work, look in the SJA1000
+datasheet. In 11bit ID_s it is possible to filter out a single ID this way, but in 29bit ID's it is only
+possible to filter out a group of ID's. 
+
+
+V[CR] Get Version number of both CANUSB hardware and software
+This command is active always.
+Example: V[CR]
+Get Version numbers
+Returns: V and a 2 bytes BCD value for hardware version and
+a 2 byte BCD value for software version plus
+CR (Ascii 13) for OK. E.g. V1013[CR]
+
+N[CR] Get Serial number of the CANUSB adapter.
+This command is active always.
+Example: N[CR]
+Get Serial number
+Returns: N and a 4 bytes value for serial number plus
+CR (Ascii 13) for OK. E.g. NA123[CR]
+Note that the serial number can have both numerical
+and alfa numerical values in it. 
+
+Zn[CR] Sets Time Stamp ON/OFF for received frames only.
+This command is only active if the CAN channel is closed.
+Setting it to ON, will add 4 bytes sent out from CANUSB with the 
+A and P command or when the Auto Poll/Send feature is enabled.
+When using Time Stamp each message gets a time in milliseconds
+when it was received into the CANUSB, this can be used for real
+time applications for e.g. knowing time inbetween messages etc.
+Note however by using this feature you maybe will decrease
+bandwith on the CANUSB, since it adds 4 bytes to each message
+being sent (specially on VCP drivers).
+If the Time Stamp is OFF, the incomming frames looks like this:
+t10021133[CR] (a standard frame with ID=0x100 & 2 bytes)
+If the Time Stamp is ON, the incomming frames looks like this:
+t100211334D67[CR] (a standard frame with ID=0x100 & 2 bytes)
+Note the last 4 bytes 0x4D67, which is a Time Stamp for this
+specific message in milliseconds (and of course in hex). The timer
+in the CANUSB starts at zero 0x0000 and goes up to 0xEA5F before
+it loop arround and get's back to 0x0000. This corresponds to exact
+60,000mS (i.e. 1 minute which will be more than enough in most
+systems).
+
+Example 1: Z0[CR]
+Turn OFF the Time Stamp feature (default).
+Example 2: Z1[CR]
+Turn ON the Time Stamp feature.
+Returns: CR (Ascii 13) for OK or BELL (Ascii 7) for ERROR.
+
+
+
+
+
+Интерфейс CAN-USB
+
+Команды CANUSB ASCII V1.1:
+
+Примечание. Все команды CANUSB должны заканчиваться [CR] (Ascii = 13) и
+они чувствительны к делу.
+
+Sn [CR] Настройка со стандартными битрейтами CAN, где n равно 0-8.
+Эта команда активна, только если канал CAN закрыт.
+S0 Setup 10Kbit
+Настройка S1 20Кбит
+Настройка S2 50Кбит
+Настройка S3 100Кбит
+Настройка S4 125Кбит
+Настройка S5 250Кбит
+Настройка S6 500Кбит
+Настройка S7 800 Кбит
+Настройка S8 1Mbit
+Пример: S4 [CR]
+Настройте CAN до 125Kbit.
+Возвращает: CR (Ascii 13) для ОК или BELL (Ascii 7) для ОШИБКИ.
+
+sxxyy [CR] Настройка с битрейтами BTR0 / BTR1 CAN, где xx и yy - это шестнадцатеричное
+значение. Эта команда активна, только если канал CAN закрыт.
+Эмулируйте SJA1000.
+значение xx BTR0 в шестнадцатеричном формате
+yy значение BTR1 в шестнадцатеричном формате
+Пример: s031C [CR]
+Возвращает: CR (Ascii 13) для ОК или BELL (Ascii 7) для ОШИБКИ.
+
+
+O [CR] Открыть канал CAN.
+Эта команда активна, только если канал CAN закрыт и
+был установлен ранее с помощью команды S или s (т.е. инициировано).
+Пример: O [CR]
+Открыть канал
+Возвращает: CR (Ascii 13) для ОК или BELL (Ascii 7) для ОШИБКИ.
+
+
+C [CR] Закрыть канал CAN.
+Эта команда активна, только если канал CAN открыт.
+Пример: C [CR]
+Закрыть канал
+Возвращает: CR (Ascii 13) для ОК или BELL (Ascii 7) для ОШИБКИ.
+
+
+tiiildd ... [CR] Передать стандартный (11-битный) кадр CAN.
+Эта команда активна, только если канал CAN открыт.
+iii Идентификатор в шестнадцатеричном формате (000-7FF)
+l Длина данных (0-8)
+Значение байта в шестнадцатеричном формате (00-FF). Количество дд пар
+должен соответствовать длине данных, в противном случае ошибка
+происходят.
+Пример 1: t10021133 [CR]
+Отправляет 11-битный кадр CAN с идентификатором = 0x100, 2 байта
+со значением 0x11 и 0x33.
+Пример 2: t0200 [CR]
+Посылает 11-битный кадр CAN с ID = 0x20 & 0 байтов.
+Возвращает: z [CR] для OK или BELL (Ascii 7) для ERROR.
+
+Tiiiiiiiildd ... [CR] Передать расширенный (29-битный) кадр CAN.
+Эта команда активна, только если канал CAN открыт.
+iiiiiiii Идентификатор в гексе (00000000-1FFFFFFF)
+l Длина данных (0-8)
+Значение байта в шестнадцатеричном формате (00-FF). Количество дд пар
+должен соответствовать длине данных, в противном случае ошибка
+происходят.
+Пример 1: t0000010021133 [CR]
+Отправляет 29-битный кадр CAN с идентификатором = 0x100, 2 байта
+со значением 0x11 и 0x33.
+Возвращает: Z [CR] для OK или BELL (Ascii 7) для ERROR.
+
+riiil [CR] Передает стандартный RTR (11-битный) кадр CAN.
+Эта команда активна, только если CANUSB открыт в обычном режиме.
+iii Идентификатор в шестнадцатеричном формате (000-7FF)
+l Длина данных (0-8)
+Пример 1: r1002 [CR]
+Посылает 11-битный кадр RTR CAN с идентификатором = 0x100
+и DLC установлен в два (2 байта).
+Возвращает: z [CR] для OK или BELL (Ascii 7) для ERROR.
+Riiiiiiiil [CR] Передать расширенный кадр RTR (29 бит) CAN.
+Эта команда активна, только если CANUSB открыт в обычном режиме.
+iiiiiiii Идентификатор в гексе (00000000-1FFFFFFF)
+l Длина данных (0-8)
+Пример 1: t000001002 [CR]
+Посылает 11-битный кадр RTR CAN с идентификатором = 0x100
+и DLC установлен в два (2 байта).
+Возвращает: Z [CR] для OK или BELL (Ascii 7) для ERROR.
+
+F [CR] (не поддерживается). Считывание флагов состояния.
+Эта команда активна, только если канал CAN открыт.
+Пример 1: F [CR]
+Читайте флаги состояния.
+Возвращает: F с шестнадцатеричным BCD шестнадцатеричным значением плюс CR (Ascii 13)
+для ОК. Если канал CAN не открыт, возвращается BELL
+(Ascii 7). Эта команда также очищает КРАСНУЮ ошибку
+СВЕТОДИОД. Смотрите доступные ошибки ниже. Например. F01 [CR]
+
+
+Mxxxxxxxx [CR] (не поддерживается) Устанавливает регистр кода принятия
+Эта команда активна, только если канал CAN инициирован и
+не открыт
+xxxxxxxx Код принятия в шестнадцатеричном формате с LSB первым,
+AC0, AC1, AC2 и AC3.
+Для получения дополнительной информации см. Таблицу данных Philips SJA1000.
+Пример: M00000000 [CR]
+Установите код подтверждения 0x00000000
+Это по умолчанию при включении, то есть получать все кадры.
+Возвращает: CR (Ascii 13) для ОК или BELL (Ascii 7) для ОШИБКИ.
+
+mxxxxxxxx [CR] (не поддерживается) Устанавливает регистр приемочной маски
+Эта команда активна, только если канал CAN инициирован и
+не открыт
+xxxxxxxx Маска принятия в гексагоне с LSB первой,
+AM0, AM1, AM2 и AM3.
+Для получения дополнительной информации см. Таблицу данных Philips SJA1000.
+Пример: mFFFFFFFF [CR]
+Установите маску принятия на 0xFFFFFFFF
+Это по умолчанию при включении, то есть получать все кадры.
+Возвращает: CR (Ascii 13) для ОК или BELL (Ascii 7) для ОШИБКИ.
+Настройка регистра приемки и маски
+Регистр кода принятия и регистр маски принятия работают вместе, и они могут
+отфильтровать 2 группы сообщений. Для получения дополнительной информации о том, как это работает, смотрите в SJA1000
+техническая спецификация. В 11-битных ID_s можно отфильтровать один идентификатор таким образом, но в 29-битных ID это только
+можно отфильтровать группу идентификаторов.
+
+V [CR] Получить номер версии аппаратного и программного обеспечения CANUSB
+Эта команда активна всегда.
+Пример: V [CR]
+Получить номера версий
+Возвращает: V и 2-байтовое значение BCD для аппаратной версии и
+2-байтовое значение BCD для версии программного обеспечения плюс
+CR (Ascii 13) для ОК. Например. V1013 [CR]
+
+N [CR] Получить серийный номер адаптера CANUSB.
+Эта команда активна всегда.
+Пример: N [CR]
+Получить серийный номер
+Возвращает: N и значение 4 байта для серийного номера плюс
+CR (Ascii 13) для ОК. Например. NA123 [CR]
+Обратите внимание, что серийный номер может иметь как числовой
+и альфа числовые значения в нем.
+
+Zn [CR] Устанавливает отметку времени вкл / выкл только для полученных кадров.
+Эта команда активна, только если канал CAN закрыт.
+При установке значения ON, 4 байта будут отправлены из CANUSB с
+Команды A и P или когда включена функция автоматического опроса / отправки.
+При использовании метки времени каждое сообщение получает время в миллисекундах
+когда он был получен в CANUSB, это может быть использовано для реального
+приложения времени, например, зная время между сообщениями и т. д.
+Обратите внимание, однако, с помощью этой функции вы, возможно, уменьшите
+пропускная способность на CANUSB, так как он добавляет 4 байта к каждому сообщению
+отправка (особенно на драйверы VCP).
+Если временная метка выключена, входящие кадры выглядят так:
+t10021133 [CR] (стандартный кадр с ID = 0x100 & 2 байта)
+Если временная метка включена, входящие кадры выглядят так:
+t100211334D67 [CR] (стандартный кадр с ID = 0x100 & 2 байта)
+Обратите внимание на последние 4 байта 0x4D67, что является отметкой времени для этого
+конкретное сообщение в миллисекундах (и, конечно, в шестнадцатеричном формате). Таймер
+в CANUSB начинается с нуля 0x0000 и до 0xEA5F до
+он зацикливается и возвращается к 0x0000. Это соответствует точному
+60 000 мс (т. Е. 1 минута, которой будет более чем достаточно в большинстве
+системы).
+
+Пример 1: Z0 [CR]
+Отключите функцию отметки времени (по умолчанию).
+Пример 2: Z1 [CR]
+Включите функцию отметки времени.
+Возвращает: CR (Ascii 13) для ОК или BELL (Ascii 7) для ОШИБКИ.

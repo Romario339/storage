@@ -1,0 +1,67 @@
+; Installation inf for the ORANGE5 USB Bulk Driver
+;
+; (c) Copyright 2009 CnCLab
+;
+
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+ClassGUID={36FC9E60-C465-11CF-8056-444553540000}
+provider=%MSFT%
+DriverVer=08/05/2008,5.00.2064
+CatalogFile=o5usb.cat
+
+[SourceDisksNames]
+1=%Disk_Description%,,,
+
+[SourceDisksFiles]
+o5usb.sys = 1
+
+[Manufacturer]
+%MfgName%=Microsoft, NTx86, NTia64, NTamd64
+
+[Microsoft.NTx86]
+%USB\VID_03EB&PID_5550.DeviceDesc%=o5usb.Dev, USB\VID_03EB&PID_5550
+
+[Microsoft.NTia64]
+%USB\VID_03EB&PID_5550.DeviceDesc%=o5usb.Dev, USB\VID_03EB&PID_5550
+
+[Microsoft.NTamd64]
+%USB\VID_03EB&PID_5550.DeviceDesc%=o5usb.Dev, USB\VID_03EB&PID_5550
+
+[DestinationDirs]
+o5usb.Files.Ext = 10,System32\Drivers
+
+[o5usb.Dev.NT]
+CopyFiles=o5usb.Files.Ext
+
+[o5usb.Dev.NT.Services]
+Addservice = o5usb, 0x00000002, o5usb.AddService
+
+[o5usb.AddService]
+DisplayName    = %o5usb.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\o5usb.sys
+AddReg         = o5usb.AddReg
+LoadOrderGroup = Base
+
+[o5usb.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,o5usb.sys
+HKR,"Parameters","MaximumTransferSize",0x10001,4096
+HKR,"Parameters","DebugLevel",0x10001,2
+HKR,"Parameters","o5usbEnable",0x10001,1
+
+[o5usb.Files.Ext]
+o5usb.sys
+
+;---------------------------------------------------------------;
+
+[Strings]
+MSFT="Microsoft"
+MfgName="Atmel (CnCLab)"
+Disk_Description="ORANGE5 USB Installation Disk"
+USB\VID_03EB&PID_5550.DeviceDesc="ORANGE5 USB"
+o5usb.SvcDesc="ORANGE5 USB o5usb.Sys driver"
