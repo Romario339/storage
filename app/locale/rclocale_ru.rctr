@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RCTR sourceLang="en" targetLang="ru" version="1.0">
+    <message>
+        <source>Yes</source>
+        <translation>Да</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>Хорошо</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Выход</translation>
+    </message>
+    <message>
+        <source>No error</source>
+        <translation>Нет ошибок</translation>
+    </message>
+    <message>
+        <source>Error! Not supported</source>
+        <translation>Ошибка! Не поддерживается</translation>
+    </message>
+    <message>
+        <source>Error! Invalid channel id</source>
+        <translation>Ошибка! Неверный ID канала</translation>
+    </message>
+    <message>
+        <source>Error! Invalid protocol id</source>
+        <translation>Ошибка! Неверный ID протокола</translation>
+    </message>
+    <message>
+        <source>Error! Null parameter</source>
+        <translation>Ошибка! Пустой параметр</translation>
+    </message>
+    <message>
+        <source>Error! Invalid IO controls value</source>
+        <translation>Ошибка! Неверное значение элементов управления IO</translation>
+    </message>
+    <message>
+        <source>Error! Invalid flags</source>
+        <translation>Ошибка! Неверные флаги</translation>
+    </message>
+    <message>
+        <source>Error! Failed</source>
+        <translation>Ошибка! Не удалось</translation>
+    </message>
+    <message>
+        <source>Error! Device not connected</source>
+        <translation>Ошибка! Устройство не подключено</translation>
+    </message>
+    <message>
+        <source>Error! Timeout</source>
+        <translation>Ошибка! Время истекло</translation>
+    </message>
+    <message>
+        <source>Error! Invalid message</source>
+        <translation>Ошибка! Неверное сообщение</translation>
+    </message>
+    <message>
+        <source>Error! Invalid time interval</source>
+        <translation>Ошибка! Неверный интервал времени</translation>
+    </message>
+    <message>
+        <source>Error! Exceeded limit</source>
+        <translation>Ошибка! Превышен лимит</translation>
+    </message>
+    <message>
+        <source>Error! Invalid message id</source>
+        <translation>Ошибка! Неверное ID сообщения</translation>
+    </message>
+    <message>
+        <source>Error! Device is in use by another application</source>
+        <translation>Ошибка! Устройство занято другим приложением</translation>
+    </message>
+    <message>
+        <source>Error! Invalid IO control id</source>
+        <translation>Ошибка! Неверное ID элементов управления IO</translation>
+    </message>
+    <message>
+        <source>Error! Buffer is empty</source>
+        <translation>Ошибка! Буфер пуст</translation>
+    </message>
+    <message>
+        <source>Error! Buffer is full</source>
+        <translation>Ошибка! Буфер полн</translation>
+    </message>
+    <message>
+        <source>Error! Buffer is overflow</source>
+        <translation>Ошибка! Буфер переполнен</translation>
+    </message>
+    <message>
+        <source>Error! Pin invalid</source>
+        <translation>Ошибка! Неверный pin</translation>
+    </message>
+    <message>
+        <source>Error! Channel is use</source>
+        <translation>Ошибка! Канал используется</translation>
+    </message>
+    <message>
+        <source>Error! Message protocol id</source>
+        <translation>Ошибка! ID протокола сообщения</translation>
+    </message>
+    <message>
+        <source>Error! Invalid filter id</source>
+        <translation>Ошибка! Неверный ID фильтра</translation>
+    </message>
+    <message>
+        <source>Error! No flow control</source>
+        <translation>Ошибка! Нет контроля потока</translation>
+    </message>
+    <message>
+        <source>Error! Not unique</source>
+        <translation>Ошибка! Не уникальный</translation>
+    </message>
+    <message>
+        <source>Error! Invalid baudrate</source>
+        <translation>Ошибка! Неверная скорость передачи</translation>
+    </message>
+    <message>
+        <source>Error! Invalid device id</source>
+        <translation>Ошибка! Неверный ID устройства</translation>
+    </message>
+    <message>
+        <source>Error! Failed open reg key</source>
+        <translation>Ошибка! Не удалось открыть ключ</translation>
+    </message>
+    <message>
+        <source>Error! Not found pass-thru drivers</source>
+        <translation>Ошибка! Не найдены PassThru драйвера</translation>
+    </message>
+    <message>
+        <source>Error! Failed found driver</source>
+        <translation>Ошибка! Не удалось найти драйвер</translation>
+    </message>
+    <message>
+        <source>Error! Can't load driver</source>
+        <translation>Ошибка! Не удалось загрузить драйвер</translation>
+    </message>
+    <message>
+        <source>Error! Device not responding</source>
+        <translation>Ошибка! Устройство не отвечает</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation>Отключено</translation>
+    </message>
+    <message>
+        <source>Connected to </source>
+        <translation>Подключен к </translation>
+    </message>
+    <message>
+        <source>Firmware version: </source>
+        <translation>Версия прошивки:</translation>
+    </message>
+    <message>
+        <source>Voltage: </source>
+        <translation>Напряжение:</translation>
+    </message>
+    <message>
+        <source>Loading Passthrucan devices</source>
+        <translation>Загрузка Passthrucan устройства</translation>
+    </message>
+    <message>
+        <source>Try connecting to </source>
+        <translation>Попытка подключения к</translation>
+    </message>
+    <message>
+        <source>Error! Failed to open *.bin file. File not found or corrupted!</source>
+        <translation>Ошибка! Не удалось открыть *.bin файл. Файл не найден или повреждён!</translation>
+    </message>
+    <message>
+        <source>Error! Failed to open file. File not found or corrupted!</source>
+        <translation>Ошибка! Не удалось открыть файл. Файл не найден или повреждён!</translation>
+    </message>
+    <message>
+        <source>Error! Failed to create *.bin file. Access denied by the system!</source>
+        <translation>Ошибка! Не удалось создать *.bin файл. Доступ запрещен системой!</translation>
+    </message>
+    <message>
+        <source>Application allready runned</source>
+        <translation>Приложение уже запущено</translation>
+    </message>
+    <message>
+        <source>User not authorized</source>
+        <translation>Пользователь не авторизован</translation>
+    </message>
+    <message>
+        <source>Version not supported</source>
+        <translation>Версия не поддерживается</translation>
+    </message>
+    <message>
+        <source>Error! Invalid input data</source>
+        <translation>Ошибка! Неверные входные данные</translation>
+    </message>
+    <message>
+        <source>Error! User not found</source>
+        <translation>Ошибка! Пользователь не найден</translation>
+    </message>
+    <message>
+        <source>Error! Invalid phone number or password</source>
+        <translation>Ошибка! Неверный номер телефона или пароля</translation>
+    </message>
+    <message>
+        <source>Error! User is not activated</source>
+        <translation>Ошибка! Пользователь не активирован</translation>
+    </message>
+    <message>
+        <source>Error! User is blocked</source>
+        <translation>Ошибка! Пользователь заблокирован</translation>
+    </message>
+    <message>
+        <source>Error! User is banned until </source>
+        <translation>Ошибка! Пользователь забанен до </translation>
+    </message>
+    <message>
+        <source>Error! User already exists</source>
+        <translation>Ошибка! Пользователь уже существует</translation>
+    </message>
+    <message>
+        <source>Access denied! Re-enter</source>
+        <translation>Доступ запрещен! Перезайдите</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>О программе</translation>
+    </message>
+    <message>
+        <source>Error! Failed to retrieve ID</source>
+        <translation>Ошибка! Не удалось получить ID</translation>
+    </message>
+    <message>
+        <source>Incorrect phone number or password!</source>
+        <translation>Неверный номер телефона или пароль</translation>
+    </message>
+    <message>
+        <source>ADD PC</source>
+        <translation>ДОБАВИТЬ ПК</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>Вход</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Добавить</translation>
+    </message>
+    <message>
+        <source>PHONENUMBER</source>
+        <translation>НОМЕР ТЕЛЕФОНА</translation>
+    </message>
+    <message>
+        <source>PASSWORD</source>
+        <translation>ПАРОЛЬ</translation>
+    </message>
+    <message>
+        <source>Failed to connect to cloud</source>
+        <translation>Не удалось подключиться к облаку</translation>
+    </message>
+    <message>
+        <source>Internal server error</source>
+        <translation>Внутреняя ошибка сервера</translation>
+    </message>
+    <message>
+        <source>code: </source>
+        <translation>код:</translation>
+    </message>
+    <message>
+        <source>Error: Unable to create directory</source>
+        <translation>Ошибка: Не удалось создать каталог</translation>
+    </message>
+    <message>
+        <source>Error: Unable to create directory: </source>
+        <translation>Ошибка: Не удалось создать каталог:</translation>
+    </message>
+    <message>
+        <source>Error: Unable to open file for writing: </source>
+        <translation>Ошибка: Не удалось открыть файл для записи:</translation>
+    </message>
+    <message>
+        <source>Checking ...</source>
+        <translation>Проверка ...</translation>
+    </message>
+    <message>
+        <source>Update not found ...</source>
+        <translation>Обновления не найдены ...</translation>
+    </message>
+    <message>
+        <source>Update available ...</source>
+        <translation>Доступно обновление ...</translation>
+    </message>
+    <message>
+        <source>Updating ...</source>
+        <translation>Обновление ...</translation>
+    </message>
+    <message>
+        <source>Installed last update ...</source>
+        <translation>Установлены последние обновления ...</translation>
+    </message>
+    <message>
+        <source>Cleaning ...</source>
+        <translation>Очистка ...</translation>
+    </message>
+    <message>
+        <source>Update available! Do you want to update now ?</source>
+        <translation>Доступно обновление! Вы хотите обновить сейчас ?</translation>
+    </message>
+    <message>
+        <source>Preparing ...</source>
+        <translation>Подготовка ...</translation>
+    </message>
+    <message>
+        <source>Do you really want to remove ?</source>
+        <translation>Вы действительно хотите удалить ?</translation>
+    </message>
+    <message>
+        <source>Do you really want to cancel the download ?</source>
+        <translation>Вы действительно хотите отменить загрузку ?</translation>
+    </message>
+    <message>
+        <source>Downloading: </source>
+        <translation>Загрузка: </translation>
+    </message>
+    <message>
+        <source>Failed to initialize configuration file, file not found</source>
+        <translation>Не удалось загрузить файл конфигурации, файл не найден</translation>
+    </message>
+    <message>
+        <source>Failed to initialize configuration file, file is corrupted</source>
+        <translation>Не удалось загрузить файл конфигурации, файл повреждён</translation>
+    </message>
+    <message>
+        <source>Builds not installed ...</source>
+        <translation>Сборки не установлены ...</translation>
+    </message>
+    <message>
+        <source>Failed to initialize configuration file</source>
+        <translation>Не удалось загрузить файл концигурации</translation>
+    </message>
+    <message>
+        <source>Configuration file is corrupted</source>
+        <translation>Файл конфигурации повреждён</translation>
+    </message>
+    <message>
+        <source>COUNTRY</source>
+        <translation>СТРАНА</translation>
+    </message>
+    <message>
+        <source>Update &amp; Download</source>
+        <translation>Обновление и Загрузка</translation>
+    </message>
+    <message>
+        <source>Canceling, wait...</source>
+        <translation>Отмена, ожидайте ...</translation>
+    </message>
+    <message>
+        <source>DOWNLOAD</source>
+        <translation>ЗАГРУЗКА</translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation>Помощь</translation>
+    </message>
+    <message>
+        <source>Unknown error</source>
+        <translation>Неизвестная ошибка</translation>
+    </message>
+    <message>
+        <source>Internal server error or failed to connect to the server. Error code: 0x00</source>
+        <translation>Внутреняя ошибка сервера или не удалось подключится к серверу. Код ошибки: 0x00</translation>
+    </message>
+    <message>
+        <source>Successful! Wait for activation</source>
+        <translation>Успешно! Ожидайте активации</translation>
+    </message>
+    <message>
+        <source>LOGIN</source>
+        <translation>ВХОД</translation>
+    </message>
+    <message>
+        <source>Registration</source>
+        <translation>Регистрация</translation>
+    </message>
+    <message>
+        <source>The orange not found or corrupted, please select orange</source>
+        <translation>Orange не найден или повреждён, пожалуйста выберите orange</translation>
+    </message>
+    <message>
+        <source>The Orange application was crashed, do you want to change Orange build?</source>
+        <translation>Приложение orange было повреждено, вы хотите сменить сборку orange?</translation>
+    </message>
+    <message>
+        <source>Incorrect input data!</source>
+        <translation>Неверная входная информация!</translation>
+    </message>
+    <message>
+        <source>Incorrect email!</source>
+        <translation>Неверная почта!</translation>
+    </message>
+    <message>
+        <source>REGISTRATION</source>
+        <translation>РЕГИСТРАЦИЯ</translation>
+    </message>
+    <message>
+        <source>FIRSTNAME</source>
+        <translation>ИМЯ</translation>
+    </message>
+    <message>
+        <source>LASTNAME</source>
+        <translation>ФАМИЛИЯ</translation>
+    </message>
+    <message>
+        <source>EMAIL</source>
+        <translation>ПОЧТА</translation>
+    </message>
+    <message>
+        <source>The orange not found or corrupted, please select another orange build</source>
+        <translation>Orange не найден или повреждён, пожалуйста выберите другую сборку orange</translation>
+    </message>
+    <message>
+        <source>Error! Access denied</source>
+        <translation>Ошибка! Доступ запрещен</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>Настройки</translation>
+    </message>
+    <message>
+        <source>Attention!</source>
+        <translation>Внимание!</translation>
+    </message>
+    <message>
+        <source>The application must be restarted\nfor the settings to take effect!</source>
+        <translation>Приложение должно быть перезапущено\nдля приминения настроек!</translation>
+    </message>
+    <message>
+        <source>Orange:</source>
+        <translation>Orange:</translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation>Язык:</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Сохранить</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Check update &amp; Download original orange builds</source>
+        <translation>Проверить обновления и загрузить оригинальные orange сборки</translation>
+    </message>
+    <message>
+        <source>Home page:</source>
+        <translation>Домашняя страница:</translation>
+    </message>
+    <message>
+        <source>New PC? Click to add</source>
+        <translation>Новый ПК? Нажмите для добавления</translation>
+    </message>
+    <message>
+        <source>Please wait ...</source>
+        <translation>Пожалуйста подождите ...</translation>
+    </message>
+    <message>
+        <source>Remember me</source>
+        <translation>Запомнить меня</translation>
+    </message>
+</RCTR>
